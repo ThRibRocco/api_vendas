@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# API VENDAS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### DOCUMENTAÇÃO
 
-## Available Scripts
+## Iniciar o Serviço
 
-In the project directory, you can run:
+Essas instruções ajudarão você a executar uma cópia do projeto em sua máquina local para desenvolvimento e testes. Para informações sobre como implantar o projeto em um sistema ativo, consulte a seção de implantação.
 
-### `npm start`
+## Design de Software
+ - SOLID
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Framework
+ - SPRING FRAMEWORK
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ORM
+ - HIBERNATE
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Funcionalidades para o usuário
 
-### `npm run build`
+### Criar Usuário
+- **Método**: POST
+- **URL**: `/usuario`
+- **Campos**:
+  1. `name`
+  2. `email`
+  3. `password`
+  4. `is_active`
+  5. `cpf_cnpj`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Exemplo de `curl`**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+curl -X POST http://localhost:8080/usuario \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "John Doe",
+           "email": "john.doe@example.com",
+           "password": "password123",
+           "is_active": true,
+           "cpf_cnpj": "12345678901"
+         }'
+```
+### Atualizar Usuário
+- **Método**: PUT
+- **URL**: `/usuario/{id}`
+- **Campos**:
+  1. `name`
+  2. `email`
+  3. `password`
+  4. `is_active`
+  5. `cpf_cnpj`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Exemplo de `curl`**:
 
-### `npm run eject`
+```bash
+curl -X PUT http://localhost:8080/usuario \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "John Doe",
+           "email": "john.doe@example.com",
+           "password": "password123",
+           "is_active": true,
+           "cpf_cnpj": "12345678901"
+         }'
+```
+### Encontrar Usuário pelo ID
+- **Método**: GET
+- **URL**: `/usuario/{id}`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Exemplo de `curl`**:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+curl -X GET http://localhost:8080/usuario/{id}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Inativar ou Ativar usuário pelo ID
+- **Método**: PUT
+- **URL**: `/usuario/{id}/status`
+- **Campos**:  
+  1. `is_active`
+  
+**Exemplo de `curl`**:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+curl -X PUT http://localhost:8080/usuario/{id}/status \
+     -H "Content-Type: application/json" \
+     -d '{
+           "is_active": false
+         }'
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
